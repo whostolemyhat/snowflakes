@@ -166,7 +166,7 @@ fn main() {
     let flake = generate(&hash);
     // println!("{:?}", flake);
 
-    let default_output = format!("{}.png", hash);
+    let default_output = format!("images/{}.png", hash);
     let surface = ImageSurface::create(Format::ARgb32, IMAGE_SIZE, IMAGE_SIZE).unwrap();
     let ctx = Context::new(&surface);
     draw_points(&ctx, &flake);
