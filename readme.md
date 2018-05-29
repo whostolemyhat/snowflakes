@@ -1,0 +1,1 @@
+Based on https://joshleeb.com/posts/rust-wasm-snowhash/
