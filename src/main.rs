@@ -157,14 +157,12 @@ fn create_hash(len: usize) -> String {
 }
 
 fn main() {
-    // let args: Vec<String> = std::env::args().collect();
-    // println!("{:?}", args);
-    // let hash = "2552a8f69a6d45dbd786a8452d14dc841c665f04e763bb2c6b2157b8b95a231a";
-    // let hash = format!("{:x}", create_hash(16));
-    let hash = create_hash(64);
+    let hash = match std::env::args().nth(1) {
+        Some(text) => text,
+        None => create_hash(64)
+    };
 
     let flake = generate(&hash);
-    // println!("{:?}", flake);
 
     let default_output = format!("images/{}.png", hash);
     let surface = ImageSurface::create(Format::ARgb32, IMAGE_SIZE, IMAGE_SIZE).unwrap();
@@ -172,4 +170,6 @@ fn main() {
     draw_points(&ctx, &flake);
     let mut file = File::create(default_output).unwrap();
     surface.write_to_png(&mut file).unwrap();
+
+    println!("{:?}", hash);
 }
